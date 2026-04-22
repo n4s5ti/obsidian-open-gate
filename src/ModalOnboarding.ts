@@ -1,6 +1,7 @@
 import { App, Modal } from 'obsidian'
 import { createFormEditGate } from './fns/createFormEditGate'
 import { GateFrameOption } from './GateOptions'
+import { ModalElementPicker } from './ModalElementPicker'
 
 export class ModalOnBoarding extends Modal {
     gateOptions: GateFrameOption
@@ -32,10 +33,17 @@ export class ModalOnBoarding extends Modal {
             text: 'But now you have to create your first gate.'
         })
 
-        createFormEditGate(contentEl, this.gateOptions, (result) => {
-            this.onSubmit(result)
-            this.close()
-        })
+        createFormEditGate(
+            contentEl,
+            this.gateOptions,
+            (result) => {
+                this.onSubmit(result)
+                this.close()
+            },
+            (current, onPicked) => {
+                new ModalElementPicker(this.app, { ...this.gateOptions, cssSelector: current }, onPicked).open()
+            }
+        )
     }
 
     onClose() {

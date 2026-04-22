@@ -1,6 +1,7 @@
 import WebviewTag = Electron.WebviewTag
 import { GateFrameOption } from '../GateOptions'
 import getDefaultUserAgent from './getDefaultUserAgent'
+import { generateIsolationScript } from './generateIsolationScript'
 
 // Constants for repeated strings
 const DEFAULT_URL = 'about:blank'
@@ -27,8 +28,17 @@ export const createWebviewTag = (params: Partial<GateFrameOption>, onReady?: () 
             webviewTag.setZoomFactor(params.zoomFactor)
         }
 
+        // Apply user's custom CSS first so the isolation script can override it.
         if (params?.css) {
             await webviewTag.insertCSS(params.css)
+        }
+
+        // Isolation runs last: it marks the target element and the injected
+        // stylesheet hides everything else. The script also installs a
+        // MutationObserver so SPA re-renders re-apply the marker.
+        const isolationScript = generateIsolationScript(params.cssSelector)
+        if (isolationScript) {
+            await webviewTag.executeJavaScript(isolationScript)
         }
 
         if (params?.js) {

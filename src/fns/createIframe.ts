@@ -1,4 +1,5 @@
 import { GateFrameOption } from '../GateOptions'
+import { generateIsolationScript } from './generateIsolationScript'
 
 export const createIframe = (params: Partial<GateFrameOption>, onReady?: () => void): HTMLIFrameElement => {
     const iframe = document.createElement('iframe')
@@ -18,16 +19,26 @@ export const createIframe = (params: Partial<GateFrameOption>, onReady?: () => v
     iframe.addEventListener('load', () => {
         onReady?.call(null)
 
+        const doc = iframe.contentDocument
+        if (!doc) return
+
         if (params?.css) {
-            const style = document.createElement('style')
+            const style = doc.createElement('style')
             style.textContent = params.css
-            iframe.contentDocument?.head.appendChild(style)
+            doc.head.appendChild(style)
+        }
+
+        const isolationScript = generateIsolationScript(params.cssSelector)
+        if (isolationScript) {
+            const script = doc.createElement('script')
+            script.textContent = isolationScript
+            doc.head.appendChild(script)
         }
 
         if (params?.js) {
-            const script = document.createElement('script')
+            const script = doc.createElement('script')
             script.textContent = params.js
-            iframe.contentDocument?.head.appendChild(script)
+            doc.head.appendChild(script)
         }
     })
 

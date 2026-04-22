@@ -12,4 +12,5 @@ export type GateFrameOption = {
     zoomFactor?: number // Zoom factor (0.5 = 50%, 1.0 = 100%, 2.0 = 200%, etc.)
     css?: string // Custom CSS for the gate frame
     js?: string // Custom JavaScript for the gate frame
+    cssSelector?: string // CSS selector to isolate specific element(s)
 }

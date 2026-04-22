@@ -1,8 +1,15 @@
-import { Setting } from 'obsidian'
+import { Notice, Platform, Setting } from 'obsidian'
 import { normalizeGateOption } from './normalizeGateOption'
 import { GateFrameOption, GateFrameOptionType } from '../GateOptions'
 
-export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFrameOption, onSubmit?: (result: GateFrameOption) => void) => {
+export type PickElementLauncher = (current: string, onPicked: (selector: string) => void) => void
+
+export const createFormEditGate = (
+    contentEl: HTMLElement,
+    gateOptions: GateFrameOption,
+    onSubmit?: (result: GateFrameOption) => void,
+    onPickElement?: PickElementLauncher
+) => {
     new Setting(contentEl)
         .setName('URL')
         .setClass('open-gate--form-field')
@@ -110,6 +117,39 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
                 gateOptions.zoomFactor = parseFloat(value)
             })
         )
+
+    const selectorSetting = new Setting(advancedOptions)
+        .setName('Element Selector')
+        .setClass('open-gate--form-field--column')
+        .setDesc('CSS selector or XPath expression. Use "Pick element" to generate one by clicking. Leave empty to show full page.')
+
+    let selectorTextEl: HTMLTextAreaElement | null = null
+    selectorSetting.addTextArea((text) => {
+        text.setPlaceholder('.widget-class, #element-id, or //div[@id="main"]')
+            .setValue(gateOptions.cssSelector ?? '')
+            .onChange(async (value) => {
+                gateOptions.cssSelector = value
+            })
+        selectorTextEl = text.inputEl
+    })
+
+    if (onPickElement && !Platform.isMobileApp) {
+        selectorSetting.addButton((btn) =>
+            btn
+                .setButtonText('Pick element')
+                .setTooltip('Open the page and click an element to generate its selector')
+                .onClick(() => {
+                    if (!gateOptions.url || gateOptions.url.trim() === '') {
+                        new Notice('Enter a URL first, then pick an element.')
+                        return
+                    }
+                    onPickElement(gateOptions.cssSelector ?? '', (selector) => {
+                        gateOptions.cssSelector = selector
+                        if (selectorTextEl) selectorTextEl.value = selector
+                    })
+                })
+        )
+    }
 
     const cssFieldDesc = new DocumentFragment()
 
