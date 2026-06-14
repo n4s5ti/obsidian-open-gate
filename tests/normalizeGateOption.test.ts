@@ -15,7 +15,7 @@ describe('normalizeGateOption', () => {
   it('applies default profile key and zoom factor', () => {
     const gate = { url: 'https://example.com' }
     const normalized = normalizeGateOption(clone(gate))
-    expect(normalized.profileKey).toBe('open-gate')
+    expect(normalized.profileKey).toBe('local-app-frames')
     expect(normalized.zoomFactor).toBe(1)
   })
 

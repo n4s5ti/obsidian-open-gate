@@ -1,3 +1,27 @@
+---
+tags:
+  - context-menu
+  - editor/context-menu
+  - gate-link
+  - gate-reuse
+  - gate/link
+  - gate/reuse
+  - link-conversion
+  - link/conversion
+  - markdown-syntax
+  - markdown/syntax
+  - obsidian-plugin
+  - obsidian/plugin
+  - plugin-configuration
+  - plugin/configuration
+  - text-editor
+  - text/editor
+  - url-encoding
+  - url-management
+  - url/encoding
+  - url/management
+---
+
 # Gate Link
 
 This feature allows you to create a link that opens a URL within the gate view of Obsidian, rather than navigating away in an external browser
@@ -18,7 +42,7 @@ We know that encoding URLs can be a hassle, so we've added a context menu option
 
 A popup will appear, asking for the title and URL of the gate. The URL will be automatically encoded for you.
 
-![img.png](assets/img_2.png)
+![img.png](img_2.png)
 
 ## Convert to gate link
 

@@ -1,5 +1,22 @@
 ---
 outline: deep
+tags:
+  - command-palette
+  - customization-options
+  - gate-configuration
+  - note-taking
+  - note-taking/website-embedding
+  - obsidian-app
+  - obsidian-app/command-palette
+  - obsidian-app/plugin-installation
+  - obsidian-app/plugin-settings
+  - obsidian-plugin
+  - plugin-installation
+  - plugin-settings
+  - plugin/open-gate
+  - productivity-tools
+  - productivity-tools/website-embedding
+  - website-embedding
 ---
 
 # Getting Started
@@ -13,4 +30,4 @@ To begin using the Obsidian Open Gate plugin, follow these simple steps to insta
 
 You may notice that there are several options available for customizing your gates. We will deep dive into these features in the next section. For now, feel free to explore the plugin and experiment with embedding different websites to enhance your note-taking experience.
 
-![img_1.png](assets/img_1.png)
+![img_1.png](img_1.png)

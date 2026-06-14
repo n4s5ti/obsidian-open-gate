@@ -1,3 +1,24 @@
+---
+tags:
+  - collaborative-workspace
+  - collaborative-workspace/notion
+  - education/interactive-learning
+  - interactive-notes
+  - note-taking
+  - note-taking/interactive-notes
+  - productivity-enhancement
+  - productivity-tools
+  - productivity-tools/obsidian
+  - project-management
+  - project-management/trello
+  - real-time-updates
+  - technology/integration
+  - web-integration
+  - web-integration/iframe
+  - web-integration/webview
+  - workflow-optimization
+---
+
 # What is Open Gate?
 
 **Obsidian Open Gate** seamlessly integrates web browsing into your Obsidian note-taking experience. Embed any website as a "Gate" within the Obsidian interface or directly within notes. Customize the layout, inject custom CSS, and access Gates quickly via hotkeys or a command palette. Whether you're researching, studying, or just browsing, Obsidian Open Gate keeps everything you need in one place, enhancing your productivity and streamlining your workflow.

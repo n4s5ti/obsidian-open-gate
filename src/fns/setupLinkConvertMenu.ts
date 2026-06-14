@@ -30,13 +30,13 @@ const createMenu = (menu: Menu, editor: Editor) => {
     const parsedLink = parseLink(selection)
     if (!parsedLink) return
 
-    if (parsedLink.url.startsWith('obsidian://opengate')) {
+    if (parsedLink.url.startsWith('obsidian://localappframes')) {
         menu.addItem((item) => {
             item.setTitle('Convert to normal link').onClick(async () => {
                 // get the url parameter from the link
                 const urlMatch = parsedLink.url.match(/url=([^&]+)/)
                 if (!urlMatch) {
-                    new Notice('Can not convert the pre-configured gate link to normal link.')
+                    new Notice('Can not convert the pre-configured frame link to normal link.')
                     return
                 }
 
@@ -47,8 +47,8 @@ const createMenu = (menu: Menu, editor: Editor) => {
         })
     } else {
         menu.addItem((item) => {
-            item.setTitle('Convert to Gate Link').onClick(async () => {
-                const gateLink = `[${parsedLink.title}](obsidian://opengate?title=${encodeURIComponent(parsedLink.title)}&url=${encodeURIComponent(parsedLink.url)})`
+            item.setTitle('Convert to Local App Frame Link').onClick(async () => {
+                const gateLink = `[${parsedLink.title}](obsidian://localappframes?title=${encodeURIComponent(parsedLink.title)}&url=${encodeURIComponent(parsedLink.url)})`
                 editor.replaceSelection(gateLink)
             })
         })

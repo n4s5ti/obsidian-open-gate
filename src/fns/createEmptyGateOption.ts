@@ -8,7 +8,7 @@ export const createEmptyGateOption = (): GateFrameOption => {
         icon: '',
         hasRibbon: true,
         position: 'right',
-        profileKey: 'open-gate',
+        profileKey: 'local-app-frames',
         url: '',
         zoomFactor: 1.0,
         userAgent: getDefaultUserAgent()

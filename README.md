@@ -1,54 +1,49 @@
-![](./stuff/img.png)
+---
+tags:
+  - custom-css
+  - custom-javascript
+  - custom-js
+  - electron-webviews
+  - frame-config
+  - iframe-embedding
+  - local-app-frames
+  - local-web-apps
+  - mobile-iframe-support
+  - obsidian-plugins
+  - obsidian/plugins
+  - open-gate-fork
+  - trusted-frames
+  - web-app-embedding
+  - web-application-development
+  - web-embedding
+---
 
-# CUSTOMER SUPPORT
+# Local App Frames
 
-For the fastest and most reliable support, please use our customer support portal. This way, I can easily track your issue and make sure nothing gets overlooked. You can still reach me directly on Discord if needed.
+Local App Frames is a local fork of [Obsidian Open Gate](https://github.com/nguyenvanduocit/obsidian-open-gate), rebranded and preconfigured for trusted local web applications inside Obsidian panes.
 
-- [Discord](https://discord.gg/rxCdQ2K8M5)
-- [Support Portal](https://aiocean.atlassian.net/servicedesk/customer/portal/4)
-- [Tutorial](https://open-gate.aiocean.io/)
+The fork keeps Open Gate's power-user configuration surface: editable URLs, titles, icons, pane positions, profile keys, zoom, custom user-agent strings, custom CSS, and custom JavaScript. Custom JavaScript executes in the embedded page context, so use it only with pages you trust.
 
-# What is Open Gate?
+## Default frames
 
-Obsidian Open Gate is a plugin for Obsidian. Allows you to embed any website into Obsidian, providing a seamless browsing and note-taking experience. Whether you're researching, studying, or just browsing the web, Obsidian Open Gate keeps everything you need in one place.
+Fresh installs seed two editable frames:
 
-## Installation
+- OpenDesign — `http://127.0.0.1:7456/`
+- SigNoz — `http://127.0.0.1:3301/`
 
-Click here to install the plugin: [Direct Install](https://obsidian.md/plugins?id=open-gate)
+These are ordinary frame settings. Edit or delete them from the plugin settings, and add any additional local or trusted web app frames you need.
 
 ## Features
 
--   Embed any website in your Obsidian UI as a "Gate"
--   Open a Gate on the left, center, or right of the Obsidian UI
--   Embed a Gate directly within a note
--   Auto generate icon based on the site's favicon
--   Embed any site that can not be embedded by iframe
--   Support for mobile
--   Inject custom CSS to match the look and feel of Obsidian
--   Link to Gates from within your notes
+- Embed local or trusted web apps in Obsidian as configurable frames.
+- Open each frame on the left, center, or right of the Obsidian UI.
+- Embed a frame directly within a note.
+- Generate icons from site favicons.
+- Use Electron webviews on desktop for sites that cannot be embedded in an iframe.
+- Mobile iframe support.
+- Inject custom CSS or JavaScript for trusted pages.
+- Link to frames from notes with the local frame protocol.
 
-## Tutorial
+## Attribution
 
-We prepared a very detailed tutorial for you, don't forget to check it out: [Tutorial](https://open-gate.aiocean.io/)
-
-## Contributors ✨
-
-Thanks goes to these wonderful people.
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andrewmcgivery"><img src="https://avatars.githubusercontent.com/u/4482878?v=4?s=100" width="100px;" alt="andrewmcgivery"/><br /><sub><b>andrewmcgivery</b></sub></a><br /><a href="https://github.com/nguyenvanduocit/obsidian-open-gate/commits?author=andrewmcgivery" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/miztizm"><img src="https://avatars.githubusercontent.com/u/617020?v=4?s=100" width="100px;" alt="Digital Alchemist"/><br /><sub><b>Digital Alchemist</b></sub></a><br /><a href="https://github.com/nguyenvanduocit/obsidian-open-gate/commits?author=miztizm" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/LiamSwayne"><img src="https://avatars.githubusercontent.com/u/108629034?v=4?s=100" width="100px;" alt="Liam Swayne"/><br /><sub><b>Liam Swayne</b></sub></a><br /><a href="https://github.com/nguyenvanduocit/obsidian-open-gate/commits?author=LiamSwayne" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+This project is a fork of Obsidian Open Gate by duocnv and contributors, licensed under the MIT License. See `LICENSE` for the original license terms.

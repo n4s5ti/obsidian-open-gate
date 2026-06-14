@@ -2,9 +2,7 @@ import { ViewUpdate, PluginValue, EditorView, ViewPlugin } from '@codemirror/vie
 
 class ExamplePlugin implements PluginValue {
     private dom: HTMLDivElement | null = null
-    constructor(view: EditorView) {
-        console.log(view.dom.getElementsByTagName('img'))
-    }
+    constructor(_view: EditorView) {}
 
     update(update: ViewUpdate) {}
 

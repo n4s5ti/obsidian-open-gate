@@ -1,3 +1,18 @@
+---
+tags:
+  - changelog-management
+  - commit-messages
+  - git-tagging
+  - git-version-control
+  - obsidian-plugins
+  - plugin-development
+  - plugin-development/obsidian
+  - release-management
+  - semantic-versioning
+  - software-testing
+  - version-updating
+---
+
 # Hướng dẫn Release Phiên Bản Mới
 
 Tài liệu này hướng dẫn chi tiết quy trình release một phiên bản mới của plugin Open Gate. Vui lòng tuân thủ từng bước để đảm bảo process release diễn ra suôn sẻ.

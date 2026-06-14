@@ -1,3 +1,19 @@
+---
+tags:
+  - css-injection
+  - embedded-websites
+  - gate-options
+  - js-injection
+  - obsidian-integration
+  - obsidian-integration/gate-options
+  - profile-key
+  - single-sign-on
+  - user-agent
+  - web-development
+  - web-development/embedded-websites
+  - zoom-factor
+---
+
 # Gate Options
 
 If you can read code, here is what we have under the hood. The `GateFrameOption` type is used to define the options for a gate frame.

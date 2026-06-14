@@ -1,3 +1,21 @@
+---
+tags:
+  - browser-dev-tools
+  - css-snippets
+  - css-variables
+  - custom-css
+  - dark-mode
+  - embedded-websites
+  - markdown
+  - obsidian
+  - readability
+  - web-customization
+  - web-development
+  - web-development/custom-css
+  - web-development/embedded-websites
+  - web-development/web-customization
+---
+
 # Custom CSS
 
 Every website has its own style, and you can customize the appearance of embedded websites in Open Gate by adding custom CSS. This can help match the embedded content with your Obsidian theme or make it more readable.

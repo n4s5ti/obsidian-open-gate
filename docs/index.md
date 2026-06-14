@@ -1,10 +1,9 @@
 ---
 layout: home
-
 hero:
-  name: "Open Gate"
-  text: "Embed any website in to Obsidian"
-  tagline: "Anything you need, right where you need it"
+  name: Open Gate
+  text: Embed any website in to Obsidian
+  tagline: Anything you need, right where you need it
   actions:
     - theme: brand
       text: Direct Install
@@ -12,11 +11,9 @@ hero:
     - theme: alt
       text: Tutorial
       link: /introduction
-
   image:
     src: /logo.webp
     alt: VitePress
-
 features:
   - title: Embed Any Website
     icon: 🖼️
@@ -26,10 +23,35 @@ features:
     details: Open websites in dedicated views or embed them inline within your notes
   - title: Profile Management
     icon: 🔗
-    details: Utilize profile keys to share storage between different gates, similar to Chrome profiles
+    details: >-
+      Utilize profile keys to share storage between different gates, similar to
+      Chrome profiles
   - title: Customizable Experience
     icon: 🎨
-    details: Inject custom CSS and JavaScript to tailor the appearance and functionality of embedded websites
+    details: >-
+      Inject custom CSS and JavaScript to tailor the appearance and
+      functionality of embedded websites
+tags:
+  - community/contributors
+  - css-injection
+  - customizable-experience
+  - flexible-options
+  - javascript-injection
+  - obsidian-integration
+  - obsidian-plugins
+  - open-gate
+  - open-gate/customization
+  - open-gate/profile
+  - open-gate/website-embedding
+  - profile-management
+  - software/obsidian/customization
+  - software/obsidian/plugin
+  - software/obsidian/profile-management
+  - software/obsidian/website-embedding
+  - web-development
+  - web/css-injection
+  - web/javascript-injection
+  - website-embedding
 ---
 
 <script setup>

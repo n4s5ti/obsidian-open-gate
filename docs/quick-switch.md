@@ -1,3 +1,24 @@
+---
+tags:
+  - accessibility
+  - accessibility/keyboard-shortcuts
+  - command-palette
+  - gate-management
+  - gate-management/ribbon-options
+  - hotkey
+  - keyboard-shortcuts
+  - productivity
+  - productivity/keyboard-shortcuts
+  - quick-switch
+  - shortcut-keys
+  - software-settings
+  - software-settings/gate-management
+  - user-interface
+  - user-interface/command-palette
+  - user-interface/hotkey
+  - video-tutorial
+---
+
 # Quick switch
 
 You don’t want every gate to show up in the left sidebar.

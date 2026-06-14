@@ -1,13 +1,9 @@
 {
-	"id": "open-gate",
-	"name": "Open Gate",
-	"version": "1.11.14",
+	"id": "local-app-frames",
+	"name": "Local App Frames",
+	"version": "1.11.14-local.1",
 	"minAppVersion": "0.15.0",
-	"description": "Embed any website to Obsidian, you have anything you need in one place. You can browse website and take notes at the same time. e.g. Ask ChatGPT and copy the answer directly to your note.",
-	"author": "duocnv",
-	"authorUrl": "https://twitter.com/duocdev",
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://paypal.me/duocnguyen",
-		"Follow me": "https://twitter.com/duocdev"
-	}
+	"description": "Configurable Obsidian panes for local and trusted web apps.",
+	"author": "duocnv; fork maintained locally",
+	"authorUrl": "https://github.com/nguyenvanduocit/obsidian-open-gate"
 }

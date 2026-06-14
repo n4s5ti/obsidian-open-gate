@@ -8,14 +8,14 @@ export const normalizeGateOption = (gate: Partial<GateFrameOption>): GateFrameOp
 
     if (gate.id === '' || gate.id === undefined) {
         let seedString = gate.url!
-        if (gate.profileKey != undefined && gate.profileKey !== 'open-gate' && gate.profileKey !== '') {
+        if (gate.profileKey != undefined && gate.profileKey !== 'local-app-frames' && gate.profileKey !== '') {
             seedString += gate.profileKey
         }
         gate.id = btoa(seedString)
     }
 
     if (gate.profileKey === '' || gate.profileKey === undefined) {
-        gate.profileKey = 'open-gate'
+        gate.profileKey = 'local-app-frames'
     }
 
     if (gate.zoomFactor === 0 || gate.zoomFactor === undefined) {

@@ -27,7 +27,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
     new Setting(contentEl)
         .setName('Pin to menu')
         .setClass('open-gate--form-field')
-        .setDesc('If enabled, the gate will be pinned to the left bar')
+        .setDesc('If enabled, the frame will be pinned to the left bar')
         .addToggle((text) =>
             text.setValue(gateOptions.hasRibbon === true).onChange(async (value) => {
                 gateOptions.hasRibbon = value
@@ -37,7 +37,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
     new Setting(contentEl)
         .setName('Position')
         .setClass('open-gate--form-field')
-        .setDesc('What banner do you want to show?')
+        .setDesc('Where should this frame open?')
         .addDropdown((text) =>
             text
                 .addOption('left', 'Left')
@@ -93,7 +93,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
         .addText((text) =>
             text.setValue(gateOptions.profileKey ?? '').onChange(async (value) => {
                 if (value === '') {
-                    value = 'open-gate'
+                    value = 'local-app-frames'
                 }
 
                 gateOptions.profileKey = value
@@ -113,11 +113,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
 
     const cssFieldDesc = new DocumentFragment()
 
-    // Create a new element to hold the description and the link
-    const descLink = document.createElement('a')
-    descLink.href = 'https://github.com/nguyenvanduocit/obsidian-open-gate/discussions/categories/snippets'
-    descLink.textContent = 'Check out the snippet library here'
-    cssFieldDesc.appendChild(descLink)
+    cssFieldDesc.appendChild(document.createTextNode('Optional CSS injected into the embedded page. Use only with trusted pages.'))
 
     new Setting(advancedOptions)
         .setName('CSS')
@@ -132,7 +128,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
     new Setting(advancedOptions)
         .setName('JavaScript')
         .setClass('open-gate--form-field--column')
-        .setDesc('Leave it blank if you are not sure')
+        .setDesc('Executes in the embedded page context. Use custom JavaScript only with local or trusted pages.')
         .addTextArea((text) =>
             text.setValue(gateOptions.js ?? '').onChange(async (value) => {
                 gateOptions.js = value
@@ -141,7 +137,7 @@ export const createFormEditGate = (contentEl: HTMLElement, gateOptions: GateFram
 
     new Setting(contentEl).addButton((btn) =>
         btn
-            .setButtonText(gateOptions.id ? 'Update the gate' : 'Create new gate')
+            .setButtonText(gateOptions.id ? 'Update frame' : 'Create new frame')
             .setCta()
             .onClick(async () => {
                 gateOptions = normalizeGateOption(gateOptions)

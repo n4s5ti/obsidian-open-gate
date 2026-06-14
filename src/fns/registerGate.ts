@@ -20,8 +20,8 @@ export const registerGate = (plugin: Plugin, options: GateFrameOption) => {
     }
 
     plugin.addCommand({
-        id: `open-gate-${btoa(options.url)}`,
-        name: `Open gate ${options.title}`,
+        id: `local-app-frames-open-${options.id}`,
+        name: `Open Local App Frame: ${options.title}`,
         callback: async () => await openView(plugin.app.workspace, options.id, options.position)
     })
 }

@@ -1,3 +1,20 @@
+---
+tags:
+  - command-palette
+  - custom-icon
+  - gate-creation
+  - gate-options
+  - knowledge-management
+  - knowledge-management/obsidian
+  - obsidian-vault
+  - obsidian/vault
+  - productivity-tools
+  - productivity-tools/obsidian
+  - setting-screen
+  - url-embedding
+  - website-integration
+---
+
 # Add Gate
 
 There are two ways to add a new gate to your Obsidian vault: using the command palette or setting screen. This guide will walk you through both methods.

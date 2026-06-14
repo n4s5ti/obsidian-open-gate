@@ -1,3 +1,24 @@
+---
+tags:
+  - ai-generated-changelog
+  - artificial-intelligence
+  - code-reuse
+  - commit-message
+  - commit-message-conventions
+  - functional-programming
+  - git
+  - git-conventions
+  - git/commit-message
+  - git/conventions/angularjs
+  - programming-practices
+  - programming/languages/javascript
+  - programming/practices/code-reuse
+  - programming/practices/pure-functions
+  - pure-functions
+  - technology/artificial-intelligence
+  - testing
+---
+
 ## Functional programming
 
 Many times, I found myself trying to reuse some of the functions that I wrote in other projects. I found that the best way to do this is to write pure functions. Pure functions are functions that do not have any side effects and always return the same output for the same input. This makes them very easy to test and reuse.

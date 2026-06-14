@@ -2,14 +2,20 @@ import { Notice, ObsidianProtocolData, Plugin } from 'obsidian'
 import { SettingTab } from './SetingTab'
 import { registerGate } from './fns/registerGate'
 import { ModalEditGate } from './ModalEditGate'
-import { ModalOnBoarding } from './ModalOnboarding'
 import { unloadView } from './fns/unloadView'
 import { createEmptyGateOption } from './fns/createEmptyGateOption'
+import { createDefaultLocalGates } from './fns/createDefaultLocalGates'
 import { normalizeGateOption } from './fns/normalizeGateOption'
 import { ModalListGates } from './ModalListGates'
 import { registerCodeBlockProcessor } from './fns/registerCodeBlockProcessor'
 import { isViewExist, openView } from './fns/openView'
 import { GateView } from './GateView'
+import {
+    PAPERCLIP_CONFIG_PATHS,
+    PAPERCLIP_GATE_ID,
+    reconcilePaperclipGate,
+    resolvePaperclipGateUrlFromConfig
+} from './fns/reconcilePaperclipGate'
 import { setupLinkConvertMenu } from './fns/setupLinkConvertMenu'
 import { setupInsertLinkMenu } from './fns/setupInsertLinkMenu'
 import { PluginSetting } from './types'
@@ -40,17 +46,14 @@ export default class OpenGatePlugin extends Plugin {
         if (this.settings.uuid === '') {
             // Generate a new UUID and assign it to the settings
             this.settings.uuid = this.generateUuid()
-            // Save the updated settings
-            await this.saveSettings()
-
-            // Check if there are no gates in the settings
             if (Object.keys(this.settings.gates).length === 0) {
-                // Open the onboarding modal to create a new gate
-                new ModalOnBoarding(this.app, createEmptyGateOption(), async (gate: GateFrameOption) => {
-                    // Add the created gate to the settings
-                    await this.addGate(gate)
-                }).open()
+                const paperclipUrl = await this.resolvePaperclipRuntimeUrl()
+                for (const gate of createDefaultLocalGates(paperclipUrl)) {
+                    this.settings.gates[gate.id] = gate
+                }
             }
+
+            await this.saveSettings()
         }
     }
 
@@ -77,8 +80,8 @@ export default class OpenGatePlugin extends Plugin {
 
     private registerCommands() {
         this.addCommand({
-            id: `open-gate-create-new`,
-            name: `Create new gate`,
+            id: `local-app-frames-create-new`,
+            name: `Create new frame`,
             callback: async () => {
                 new ModalEditGate(this.app, createEmptyGateOption(), async (gate: GateFrameOption) => {
                     await this.addGate(gate)
@@ -87,8 +90,8 @@ export default class OpenGatePlugin extends Plugin {
         })
 
         this.addCommand({
-            id: `open-list-gates-modal`,
-            name: `List Gates`,
+            id: `local-app-frames-list-modal`,
+            name: `List Local App Frames`,
             hotkeys: [{ modifiers: ['Mod', 'Shift'], key: 'g' }],
             callback: async () => {
                 new ModalListGates(this.app, this.settings.gates, async (gate: GateFrameOption) => {
@@ -99,12 +102,12 @@ export default class OpenGatePlugin extends Plugin {
     }
 
     /**
-     * Register the "opengate" action to Obsidian.
+     * Register the "localappframes" action to Obsidian.
      *
-     * We will attempt to open a gate based on the provided title and navigate to the provided URL
+     * We will attempt to open a frame based on the provided title and navigate to the provided URL
      */
     private registerProtocol() {
-        this.registerObsidianProtocolHandler('opengate', this.handleCustomProtocol.bind(this))
+        this.registerObsidianProtocolHandler('localappframes', this.handleCustomProtocol.bind(this))
     }
 
     getGateOptionFromProtocolData(data: ObsidianProtocolData): GateFrameOption | undefined {
@@ -123,13 +126,18 @@ export default class OpenGatePlugin extends Plugin {
             )
         }
 
-        // If no gate is found, create a new empty gate option
         if (!targetGate) {
             targetGate = createEmptyGateOption()
+        } else {
+            targetGate = { ...targetGate }
         }
 
-        // Update the url and position if needed
         if (url) {
+            if (!this.isAllowedFrameUrl(url)) {
+                new Notice('Only http, https, and about URLs can be opened in Local App Frames.')
+                return undefined
+            }
+
             targetGate.url = url
         }
 
@@ -145,21 +153,28 @@ export default class OpenGatePlugin extends Plugin {
     }
 
     async handleCustomProtocol(data: ObsidianProtocolData) {
-        let targetGate = this.getGateOptionFromProtocolData(data)
+        const targetGate = this.getGateOptionFromProtocolData(data)
         if (targetGate === undefined) {
             if (!data.url) {
                 new Notice('Missing url parameter')
-                return
             }
+            return
         }
 
-        console.log(targetGate)
-
-        const gate = await openView(this.app.workspace, targetGate?.id || 'temp-gate', targetGate?.position)
+        const gate = await openView(this.app.workspace, targetGate.id || 'temp-gate', targetGate.position)
         const gateView = gate.view as GateView
         gateView?.onFrameReady(() => {
-            gateView.setUrl(data.url)
+            gateView.setUrl(targetGate.url)
         })
+    }
+
+    private isAllowedFrameUrl(url: string): boolean {
+        try {
+            const parsedUrl = new URL(url)
+            return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'about:'
+        } catch (_error) {
+            return false
+        }
     }
 
     async addGate(gate: GateFrameOption) {
@@ -205,6 +220,13 @@ export default class OpenGatePlugin extends Plugin {
         for (const gateId in this.settings.gates) {
             this.settings.gates[gateId] = normalizeGateOption(this.settings.gates[gateId])
         }
+
+        const paperclipUrl = await this.resolvePaperclipRuntimeUrl()
+        const paperclipGate = reconcilePaperclipGate(this.settings.gates[PAPERCLIP_GATE_ID], paperclipUrl)
+        if (paperclipGate && paperclipGate.url !== this.settings.gates[PAPERCLIP_GATE_ID]?.url) {
+            this.settings.gates[PAPERCLIP_GATE_ID] = paperclipGate
+            await this.saveSettings()
+        }
     }
 
     async saveSettings() {
@@ -214,5 +236,25 @@ export default class OpenGatePlugin extends Plugin {
     private generateUuid() {
         // generate uuid
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    }
+
+    private async resolvePaperclipRuntimeUrl(): Promise<string | undefined> {
+        for (const configPath of PAPERCLIP_CONFIG_PATHS) {
+            try {
+                if (!(await this.app.vault.adapter.exists(configPath))) {
+                    continue
+                }
+
+                const configText = await this.app.vault.adapter.read(configPath)
+                const url = resolvePaperclipGateUrlFromConfig(configText)
+                if (url) {
+                    return url
+                }
+            } catch (error) {
+                console.warn('[Local App Frames] failed reading Paperclip config', configPath, error)
+            }
+        }
+
+        return undefined
     }
 }

@@ -1,4 +1,4 @@
-import { App, Editor, Menu, Notice, Plugin } from 'obsidian'
+import { App, Editor, Menu, Plugin } from 'obsidian'
 import { ModalInsertLink } from '../ModalInsertLink'
 import { GateFrameOption } from '../GateOptions'
 
@@ -8,9 +8,9 @@ export const setupInsertLinkMenu = (plugin: Plugin) => {
 
 const createMenu = (app: App, menu: Menu, editor: Editor) => {
     menu.addItem((item) => {
-        item.setTitle('Insert Gate Link').onClick(async () => {
+        item.setTitle('Insert Local App Frame Link').onClick(async () => {
             const modal = new ModalInsertLink(app, async (gate: GateFrameOption) => {
-                const gateLink = `[${gate.title}](obsidian://opengate?title=${encodeURIComponent(gate.title)}&url=${encodeURIComponent(gate.url)})`
+                const gateLink = `[${gate.title}](obsidian://localappframes?title=${encodeURIComponent(gate.title)}&url=${encodeURIComponent(gate.url)})`
                 editor.replaceSelection(gateLink)
                 modal.close()
             })
@@ -19,4 +19,3 @@ const createMenu = (app: App, menu: Menu, editor: Editor) => {
     })
 }
 
-const getDialog = (plugin: Plugin) => {}

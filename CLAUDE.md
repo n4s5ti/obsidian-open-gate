@@ -1,3 +1,25 @@
+---
+tags:
+  - code-block
+  - code-organization
+  - custom-view
+  - custom-views
+  - electron
+  - gate-embedding
+  - gate/embedding
+  - mobile/iframe
+  - obsidian-plugin
+  - plugin-architecture
+  - plugin/architecture
+  - plugin/obsidian
+  - protocol-handler
+  - software-development
+  - typescript
+  - web-content
+  - web-development
+  - web/embedding
+---
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.

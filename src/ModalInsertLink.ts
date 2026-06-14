@@ -11,7 +11,7 @@ export class ModalInsertLink extends Modal {
     }
 
     onOpen() {
-        this.titleEl.setText('Insert Link')
+        this.titleEl.setText('Insert Local App Frame Link')
         this.createFormInsertLink()
     }
 
@@ -42,7 +42,7 @@ export class ModalInsertLink extends Modal {
 
         new Setting(this.contentEl).addButton((btn) =>
             btn
-                .setButtonText('Insert Link')
+                .setButtonText('Insert frame link')
                 .setCta()
                 .onClick(async () => {
                     gateOptions = normalizeGateOption(gateOptions)

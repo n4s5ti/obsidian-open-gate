@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-open-gate",
-  "version": "1.11.14",
-  "description": "Embedding any website to Obsidian, from now all, you have anything you need in one place.",
+  "name": "local-app-frames",
+  "version": "1.11.14-local.1",
+  "description": "Configurable Obsidian panes for local and trusted web apps.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -13,8 +13,13 @@
     "docs:preview": "vitepress preview docs",
     "test": "vitest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "obsidian",
+    "local-apps",
+    "webview",
+    "iframe"
+  ],
+  "author": "duocnv; fork maintained locally",
   "license": "MIT",
   "devDependencies": {
     "@codemirror/view": "^6.35.0",

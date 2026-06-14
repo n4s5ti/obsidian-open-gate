@@ -13,23 +13,17 @@ export class ModalOnBoarding extends Modal {
 
     onOpen() {
         const { contentEl } = this
-        contentEl.createEl('h3', { text: 'Welcome to OpenGate' })
+        contentEl.createEl('h3', { text: 'Welcome to Local App Frames' })
         contentEl.createEl('p', {
-            text: 'OpenGate is a plugin that allows you to embed any website in Obsidian. You will never have to leave Obsidian again!'
+            text: 'Local App Frames embeds local and trusted web apps in Obsidian panes.'
         })
 
         contentEl.createEl('p', {
-            text: 'If you need help, please join our community.'
-        })
-
-        contentEl.createEl('a', {
-            cls: 'community-link',
-            text: 'Community',
-            attr: { href: 'https://community.aiocean.io/' }
+            text: 'OpenDesign and SigNoz defaults are created automatically on fresh installs. You can add another frame here if needed.'
         })
 
         contentEl.createEl('p', {
-            text: 'But now you have to create your first gate.'
+            text: 'Custom JavaScript executes in the embedded page context. Use it only for trusted pages.'
         })
 
         createFormEditGate(contentEl, this.gateOptions, (result) => {

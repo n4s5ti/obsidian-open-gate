@@ -1,3 +1,23 @@
+---
+tags:
+  - code-reuse
+  - content-reuse
+  - css/filter
+  - embedded-views
+  - gate-options
+  - inline-frames
+  - markdown-syntax
+  - markdown/syntax
+  - note-taking
+  - note-taking/inline-embedding
+  - plugin-settings
+  - plugin/gate
+  - plugin/gate/options
+  - url-embedding
+  - web-embedding
+  - web/embedding
+---
+
 # Inline Embedded
 
 You can embed a view directly in a note:
@@ -14,7 +34,7 @@ css: |
 
 Here is the result:
 
-![img.png](assets/img.png)
+![img.png](wiki/apps/local-app-frames/docs/assets/img.png)
 
 You can use any property from the [Gate Options](gate-options.md) documentation.
 
